@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NotificationButton from "../NotificationButton";
@@ -13,6 +14,13 @@ function SalesCard() {
     //Atribuindo valor padrao na variavel
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/sales?minDate=2022-01-01&maxDate=2022-03-31")
+        .then(response => {
+            console.log(response.data);
+        })
+    }, []);
 
     return (
         <>
